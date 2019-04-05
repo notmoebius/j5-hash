@@ -6,7 +6,7 @@ tweet_journaleux = ["@jcunniet","@PaulLampon","@Aziliz31","@ssoumier","@marionso
 
 # Combien y a-t-il de journalistes dans ce array ?
 def count_journaliste(data_journaliste)
-    return data_journaliste.length
+    return data_journaliste.count 
 end
 
 # Combien d'handle contiennent un numéro ?
@@ -25,7 +25,7 @@ end
 
 # Combien d'handle contiennent les 4 lettres du prénom "Aude" à la suite (sans prendre en compte les majuscules) ?
 # lire un item,
-# vérifier si la chaine "Aude" existe dans item
+# vérifier si la chaine "str_check" existe dans item. Pour notre projet, c'est Aude
 # si oui, compteur+1
 def count_str_check_journaliste(data_journaliste,str_check)
     count_num=0
@@ -66,14 +66,45 @@ def count_str_uppercase(data_journaliste)
 end
 
 # Combien y a-t-il de underscore _ dans tous les pseudos confondus ?
+def count_underscore(data_journaliste)
+    count_num=0
+    data_journaliste.each do |handle|
+        if handle.gsub(/[^_]/, '') != ""
+            count_num +=1
+        end
+    end
+    return count_num
+end
 
 # Trie la liste de handle par ordre alphabétique.
+def sort_reporter(data_journaliste)
+    data_journaliste.map(&:upcase).sort.each {|handle| puts handle} 
+end
 
 # Quels sont les 50 handles les plus courts de ce array ?
+# pour chaque item du tableau, trouver sa longueur
+# le mettre dans un tableau top 50
+def top50_shorter_handle(data_journaliste)
+    top50 = []
+    top50 = data_journaliste.sort do |a, b|
+        a.length <=> b.length
+    end
+    puts top50
+end
+
+
 # Quelle est la position dans l'array de la personne @epenser ?
+def index_item(data_journaliste,str_check)
+   # data_journaliste.each do {|handle| if handle == str_check return find_index(handle)}
+    
+end
 
 puts "Big Data 1 #{count_journaliste(tweet_journaleux)}"
 puts "Big Data 2 #{count_number_journaliste(tweet_journaleux)}"
 puts "Big Data 3 #{count_str_check_journaliste(tweet_journaleux,"Aude")}"
-#puts "Big Data 4 #{count_1st_uppercase(tweet_journaleux)}"
+# KO puts "Big Data 4 #{count_1st_uppercase(tweet_journaleux)}"
 puts "Big Data 5 #{count_str_uppercase(tweet_journaleux)}"
+puts "Big Data 6 #{count_underscore(tweet_journaleux)}"
+# puts "Big Data 7 #{sort_reporter(tweet_journaleux)}"
+puts "Big Data 8 #{top50_shorter_handle(tweet_journaleux)}"
+#puts "Big Data 9 #{index_item(tweet_journaleux,"@epenser")}"
