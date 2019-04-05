@@ -42,14 +42,10 @@ end
 # vérifier si la chaine contient un premier car une maj
 # si oui, compteur+1
 def count_1st_uppercase(data_journaliste)
-    count_num=0
-    data_journaliste.each do |handle|
-        # vérifier si handle car n°2 est en uppercase
-        if handle == handle.capitalize
-            count_num +=1
-        end
-    end
-    return count_num
+
+    return data_journaliste.select {
+        |login| login[1] == login[1].upcase
+       }.length
 end
 
 # Combien contiennent une majuscule ?
@@ -102,7 +98,7 @@ end
 puts "Big Data 1 #{count_journaliste(tweet_journaleux)}"
 puts "Big Data 2 #{count_number_journaliste(tweet_journaleux)}"
 puts "Big Data 3 #{count_str_check_journaliste(tweet_journaleux,"Aude")}"
-# KO puts "Big Data 4 #{count_1st_uppercase(tweet_journaleux)}"
+puts "Big Data 4 #{count_1st_uppercase(tweet_journaleux)}"
 puts "Big Data 5 #{count_str_uppercase(tweet_journaleux)}"
 puts "Big Data 6 #{count_underscore(tweet_journaleux)}"
 puts "Big Data 7 #{sort_reporter(tweet_journaleux)}"
