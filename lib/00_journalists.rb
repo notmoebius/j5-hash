@@ -44,6 +44,7 @@ end
 def count_1st_uppercase(data_journaliste)
     count_num=0
     data_journaliste.each do |handle|
+        # vérifier si handle car n°2 est en uppercase
         if handle == handle.capitalize
             count_num +=1
         end
@@ -89,14 +90,13 @@ def top50_shorter_handle(data_journaliste)
     top50 = data_journaliste.sort do |a, b|
         a.length <=> b.length
     end
-    puts top50
+    puts top50.first(50)
 end
 
 
 # Quelle est la position dans l'array de la personne @epenser ?
 def index_item(data_journaliste,str_check)
-   # data_journaliste.each do {|handle| if handle == str_check return find_index(handle)}
-    
+    data_journaliste.index(str_check) 
 end
 
 puts "Big Data 1 #{count_journaliste(tweet_journaleux)}"
@@ -105,6 +105,6 @@ puts "Big Data 3 #{count_str_check_journaliste(tweet_journaleux,"Aude")}"
 # KO puts "Big Data 4 #{count_1st_uppercase(tweet_journaleux)}"
 puts "Big Data 5 #{count_str_uppercase(tweet_journaleux)}"
 puts "Big Data 6 #{count_underscore(tweet_journaleux)}"
-# puts "Big Data 7 #{sort_reporter(tweet_journaleux)}"
+puts "Big Data 7 #{sort_reporter(tweet_journaleux)}"
 puts "Big Data 8 #{top50_shorter_handle(tweet_journaleux)}"
-#puts "Big Data 9 #{index_item(tweet_journaleux,"@epenser")}"
+puts "Big Data 9 #{index_item(tweet_journaleux,"@epenser")}"
